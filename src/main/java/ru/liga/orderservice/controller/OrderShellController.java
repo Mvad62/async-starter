@@ -30,8 +30,6 @@ public class OrderShellController {
             throws InterruptedException, JsonProcessingException {
         Order order = new ObjectMapper().readValue(jsonOrder, Order.class);
         orderService.processOrder(order);
-
-        // todo сделать обращения во внешние сервисы асинхронными
         notificationService.notifyUser(order);
         vendorService.assignVendor(order);
         packageService.packaging(order);
