@@ -26,8 +26,7 @@ public class OrderShellController {
     private final TrailerService trailerService;
 
     @ShellMethod("создать заказ")
-    public String create(@ShellOption(value = "--jsonOrder") String jsonOrder)
-            throws InterruptedException, JsonProcessingException {
+    public String create(@ShellOption(value = "--jsonOrder") String jsonOrder) throws InterruptedException, JsonProcessingException {
         Order order = new ObjectMapper().readValue(jsonOrder, Order.class);
         orderService.processOrder(order);
         notificationService.notifyUser(order);
