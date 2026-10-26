@@ -1,6 +1,7 @@
 package ru.liga.orderservice.service.external;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import ru.liga.orderservice.model.Order;
 
@@ -8,6 +9,7 @@ import ru.liga.orderservice.model.Order;
 @Service
 public class DeliveryService {
 
+    @Async("taskExecutor")
     public void assignDeliveryPartner(Order order) throws InterruptedException {
         Thread.sleep(10000L);
         log.info("Назначен партнер по доставке {}", Thread.currentThread().getName());
